@@ -7,7 +7,7 @@ Prerequisites
 -------------
  You require a development board with a device that is supported by [CMSIS-Drivers](http://arm-software.github.io/CMSIS_5/Driver/html/index.html). Lots of devices from STMicroelectronics and NXP do have these drivers available. Please consult the [device database](https://www.keil.com/dd2) for a list of devices and development boards.
 
-When you have chosen you device and development board, use ![Pack Installer](.\static\icons\packinst.png)[Pack Installer](https://www.keil.com/support/man/docs/uv4/uv4_ca_packinstaller.htm) to download and install the following software packs:
+When you have chosen you device and development board, use ![Pack Installer](./static/icons/packinst.png)[Pack Installer](https://www.keil.com/support/man/docs/uv4/uv4_ca_packinstaller.htm) to download and install the following software packs:
 
 * **MDK-Packs::AWS_IoT_Device**
 * **ARM::CMSIS** v5.0.1 or newer
@@ -59,7 +59,7 @@ Follow these steps to create a simple application that connects to the AWS Cloud
 
 ### Create project and select software components
 1. Create a new project. Select the device that you are using on your development board.
-2. The ![Manage RTE](.\static\icons\rte.png) Manage Run-Time Environment window opens. Select the following software components:
+2. The ![Manage RTE](./static/icons/rte.png) Manage Run-Time Environment window opens. Select the following software components:
     * **Cloud Client:AWS**
     * **CMSIS:RTOS2:Keil RTX5**
     * **CMSIS:RTOS:Keil RTX5** (currently required by mbedTLS net_sockets.c)
@@ -89,11 +89,11 @@ Follow these steps to create a simple application that connects to the AWS Cloud
 3.  If you are using the software components described above, you do not need to configure the Network component. The default settings will work. If you do not have DHCP available in your network, please refer to the [MDK-Middleware documentation](http://www.keil.com/pack/doc/mw/Network/html/index.html) on how to set a static IP address.
 4.  Configure RTX5: **CMSIS:RTX_Config.h**
     * If you are using one of the provided templates (see below), you need to set the **System - Global Dynamic Memory size** to at least 10240:<br>
-    ![RTX_Config.h](.\static\images\rtx_config_h.png)<br>
+    ![RTX_Config.h](./static/images/rtx_config_h.png)<br>
     This large amount of dynamic memory is not required for custom projects.
 5.  Configure Heap: **startup_\<device>.s**
     * Configure at least 48 KB (0xC000) of heap memory.<br> 
-    ![Heap](.\static\images\heap.png)<br>
+    ![Heap](./static/images/heap.png)<br>
     This is required for the mbed TLS certificates.
 6.  Configure device specific hardware:
     * Configure the CMSIS Ethernet driver and other device specific components (clock system, I/O, ...) as required. Please consult your device's/board's documentation for more information.
@@ -105,7 +105,7 @@ The **AWS_IoT_Device** pack includes three code templates that can be used to te
     * Add **Cloud Client:AWS:Subscribe and Publish** or
     * Add **Cloud Client:AWS:Shadow** or
     * Add **Cloud Client:AWS:Shadow (console echo)**<br>
-    ![Heap](.\static\images\uct.png)<br>
+    ![Heap](./static/images/uct.png)<br>
 2.  Add **CMSIS:RTOS2:Keil RTX5:main** and update:
     * Add an attribute for an increased stack size for the application thread. Each of the samples require a thread stack size of 8 KB:<br>
       `const osThreadAttr_t app_main_attr = { .stack_size = 8192U };`
@@ -161,17 +161,17 @@ Previously, you have saved the certificates and keys for your thing that you hav
 ### Optional: Configure debug
 The AWS sample code is prepared to output `printf` statements for debugging purposes. To show these effectively, you can use the software component **Compiler:I/O:STDOUT:ITM** to show the messages in the [Debug printf](http://www.keil.com/support/man/docs/uv4/uv4_db_dbg_serialwin.htm) window. To enable this output, do the following:
 
-1.  Open the ![Options for target](.\static\icons\oft.png) Options for target dialog (**Alt+F7**).
+1.  Open the ![Options for target](./static/icons/oft.png) Options for target dialog (**Alt+F7**).
 2.  Go to the **C/C++** tab and configure debug messages by adding the following global defines to the C pre-processor:<br>
     `ENABLE_IOT_INFO` `ENABLE_IOT_WARN` `ENABLE_IOT_ERROR`<br>
 3.  Go to the **Debug** tab. Select the debug adapter that is connected to your target and configure these **Settings**:
     * **Debug** tab: Set **Port** to **SW**.
     * **Trace** tab: Set the **Core Clock** to the system clock of your target, Select **Trace Enable** and set make sure that **ITM Stimulus Port 0** is enabled:<br>
-![Debug Setup](.\static\images\debug_setup.png)
+![Debug Setup](./static/images/debug_setup.png)
 
 ### Run/debug the application
-1.  ![Build target](.\static\icons\build.png) Build the application (**F7**) and ![Download to target](.\static\icons\Flash.png) download (**F8**) to target.
-2.  Enter ![Start/Stop Debug Session](.\static\icons\debug.png) debug (**CTRL+F5**) and ![Run](.\static\icons\run.png) run (**F5**) the application on the target and monitor the console output via ![Debug (printf) Viewer](.\static\icons\uart_window.png) **Serial Window - Debug (printf) Viewer**. You should see something similar:
+1.  ![Build target](./static/icons/build.png) Build the application (**F7**) and ![Download to target](./static/icons/Flash.png) download (**F8**) to target.
+2.  Enter ![Start/Stop Debug Session](./static/icons/debug.png) debug (**CTRL+F5**) and ![Run](./static/icons/run.png) run (**F5**) the application on the target and monitor the console output via ![Debug (printf) Viewer](./static/icons/uart_window.png) **Serial Window - Debug (printf) Viewer**. You should see something similar:
     ```
     AWS IoT SDK Version 2.2.1-
     
